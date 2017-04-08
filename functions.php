@@ -10,7 +10,7 @@ function makeRadios($title, $name, $value, $radioNames, $radioValues)
         $n = $radioNames[$i];
         $v = $radioValues[$i];
         $c = ($v == $value?'checked':'');
-        echo '<input type="radio" name="'.$name.'" value="'.$v.'"'.$c.'>'.$n.'</input>';
+        echo '<input class="radio" type="radio" name="'.$name.'" value="'.$v.'"'.$c.'>'.$n.'</input>';
     }
     echo '<br/>';
 }
@@ -20,13 +20,13 @@ function makeForm($type, $filter_name, $sort_by)
 {
     echo '<form>';
     
-    echo '<input type="text" name="filter_name" value="'.$filter_name.'"/><br/>';
+    echo '<input class="textbox" type="text" name="filter_name" value="'.$filter_name.'"/><br/>';
     
     makeRadios("Search for", "type", $type, array("Games", "Characters"), array("games","chars"));
     
     makeRadios("Sort by", "sort_by", $sort_by, array("Sort option 1", "Sort option 2"), array("1", "2"));
     
-    echo '<button>Search</button>';
+    echo '<button class="button">Search</button>';
     
     echo '</form>';
 }
