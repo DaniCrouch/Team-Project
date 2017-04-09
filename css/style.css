@@ -13,3 +13,12 @@ form {
 #search_results {
     
 }
+
+body{
+    background-image: url("/Team-Project/img/Screenshot (109).png");
+    text-align: center;
+    color:blue;
+}
+.wrapper{
+background-color:white !important;
+}

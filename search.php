@@ -24,10 +24,15 @@ if($type == '') $type = 'games';
     <head>
         <title></title>
         <style>
-            @import url("css/style.css");
+            @import url("/Team-Project/css/style.css");
         </style>
     </head>
     <body>
+      
+<embed src="/Team-Project/img/Velvet's Theme (Full Version) - Tales of Berseria Music.mp3" autostart="true" loop="true"
+width="2" height="0">
+</embed>
+<div id="wrapper">
         <div id="search_area">
             <?php
             include 'functions.php';
@@ -38,6 +43,7 @@ if($type == '') $type = 'games';
             <?php
             getSearch($type, $filter_name, $sort_by);
             ?>
+        </div>
         </div>
     </body>
 </html>
