@@ -22,7 +22,7 @@ if($type == '') $type = 'games';
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Tales Shop</title>
         <style>
             @import url("/Team-Project/css/style.css");
         </style>
@@ -39,6 +39,7 @@ width="2" height="0">
             makeForm($type, $filter_name, $sort_by);
             ?>
         </div>
+       
         <div id="results_area">
             <?php
             getSearch($type, $filter_name, $sort_by);

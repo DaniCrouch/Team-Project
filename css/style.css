@@ -8,7 +8,15 @@
     
 }
 form {
+    background-color: white;
+    width: 590px;
+    border: 1px solid blue;
+   margin-left:350px;
     
+}
+input[type=text] {
+    border: 2px solid red;
+    border-radius: 4px;
 }
 #search_results {
     
@@ -18,7 +26,13 @@ body{
     background-image: url("/Team-Project/img/Screenshot (109).png");
     text-align: center;
     color:blue;
+    font-family: 'Indie Flower', cursive;
 }
 .wrapper{
-background-color:white !important;
+background:white !important;
+}
+img{
+    border-radius: 8px;
+    height:200px;
+    width:140px;
 }
