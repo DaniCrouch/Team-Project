@@ -27,7 +27,7 @@ if($order == '') $order = 'asc';
     <head>
         <title>Tales Shop</title>
         <style>
-            @import url("/Team-Project/css/style.css");
+            @import url("css/style.css");
         </style>
     </head>
     <body>
