@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function makePage($title, $body)
 {
@@ -71,6 +72,7 @@ function makeResult($row, $index)
             echo '<button>View</button>';
             echo '</form>';
         echo '</td>';
+        // TODO add the rest of the columns
     echo '</tr>';
 }
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+include 'functions.php';
+
 // Default GET vars
 $type = '';
 $filter_name = '';
@@ -21,15 +23,11 @@ if($sort_by == '') $sort_by = '2';
 if($type == '') $type = 'games';
 if($order == '') $order = 'asc';
 
-
-include 'functions.php';
-
-
+// This generates the page
 makePage("Tales Shop - Search", 
 
     makeForm($type, $filter_name, $sort_by, $order) .
     makeSearch($type, $filter_name, $sort_by, $order)
 
 );
-
 ?>
