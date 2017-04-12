@@ -14,7 +14,7 @@ if(!isset($_GET) || empty($_GET))
     // GET is empty, display an error
     makePage("Tales Shop - Error", "
     <strong class='error'>
-        We couldn't find the item you were looking for.
+        Sorry but your shopping cart was empty.
     </strong>
     ");
 }
@@ -24,7 +24,7 @@ else
     // TODO
 
     // This generates the page
-    makePage("Tales Shop", 
+    makePage("Tales Shop - Shopping cart", 
     "TODO: NOT YET IMPLEMENTED"
     );
     
