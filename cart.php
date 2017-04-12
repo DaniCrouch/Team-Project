@@ -2,16 +2,10 @@
 
 include 'functions.php';
 
-// Default GET vars
-$type = '';
-$filter_name = '';
-$sort_by = '';
-$order = '';
-
-// Check that GET is not empty
-if(!isset($_GET) || empty($_GET))
+// Check that SESSION is not empty
+if(!isset($_SESSION) || empty($_SESSION))
 {
-    // GET is empty, display an error
+    // SESSION is empty, display an error
     makePage("Tales Shop - Error", "
     <strong class='error'>
         Sorry but your shopping cart was empty.
@@ -20,7 +14,7 @@ if(!isset($_GET) || empty($_GET))
 }
 else
 {
-    // GET was set correctly, display the item
+    // SESSION was set correctly, display the item
     // TODO
 
     // This generates the page

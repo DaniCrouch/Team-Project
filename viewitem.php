@@ -3,13 +3,10 @@
 include 'functions.php';
 
 // Default GET vars
-$type = '';
-$filter_name = '';
-$sort_by = '';
-$order = '';
+$result = 0;
 
 // Check that GET is not empty
-if(!isset($_GET) || empty($_GET))
+if(!isset($_GET) || empty($_GET) || !isset($_GET['result_clicked']))
 {
     // GET is empty, display an error
     makePage("Tales Shop - Error", "

@@ -11,6 +11,21 @@ $order = '';
 // Set the GET vars
 if(isset($_GET) && !empty($_GET))
 {
+    if(isset($_GET['result_clicked']))
+    {
+        //TODO: REDIRECT TO VIEWITEM
+        header("Location: veiwitem.php?item=".$_GET['result_clicked']);
+    }
+    else if(isset($_GET['result_added']))
+    {
+        if(!isset($_SESSION['cart']))
+        {
+            $_SESSION['cart'] = array();
+        }
+        //TODO: REDIRECT TO VIEWITEM
+        $_SESSION['cart'][] = $_GET['result_added'];
+    }
+    
     $type = $_GET['type'];
     $filter_name = $_GET['filter_name'];
     $sort_by = $_GET['sort_by'];
