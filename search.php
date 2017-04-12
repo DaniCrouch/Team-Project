@@ -31,23 +31,14 @@ if($order == '') $order = 'asc';
         </style>
     </head>
     <body>
-      
-<embed src="mp3/background.mp3" autostart="true" loop="true"
-width="2" height="0">
-</embed>
-<div id="wrapper">
-        <div id="search_area">
+        <div id="wrapper">
             <?php
             include 'functions.php';
             makeForm($type, $filter_name, $sort_by, $order);
+            makeSearch($type, $filter_name, $sort_by, $order);
             ?>
         </div>
-       
-        <div id="results_area">
-            <?php
-            getSearch($type, $filter_name, $sort_by, $order);
-            ?>
-        </div>
-        </div>
+        <embed src="mp3/background.mp3" autostart="true" loop="true"width="2" height="0">
+        </embed>
     </body>
 </html>
