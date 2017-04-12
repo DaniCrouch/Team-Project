@@ -16,7 +16,7 @@ function makeRadios($title, $name, $value, $radioNames, $radioValues)
 }
 
 // TODO: MORE SEARCH PARAMS
-function makeForm($type, $filter_name, $sort_by)
+function makeForm($type, $filter_name, $sort_by, $order)
 {
     echo '<form>';
     
@@ -26,12 +26,14 @@ function makeForm($type, $filter_name, $sort_by)
     
     makeRadios("Sort by", "sort_by", $sort_by, array("Sort option 1", "Sort option 2"), array("1", "2"));
     
+    makeRadios("Order", "order", $order, array("Ascending", "Descending"), array("asc", "desc"));
+    
     echo '<button class="button">Search</button>';
     
     echo '</form>';
 }
 
-function getSearch($type, $filter_name, $sort_by)
+function getSearch($type, $filter_name, $sort_by, $order)
 {
     echo '<div id="search_results">';
     //TODO

@@ -4,6 +4,7 @@
 $type = '';
 $filter_name = '';
 $sort_by = '';
+$order = '';
 
 // Set the GET vars
 if(isset($_GET) && !empty($_GET))
@@ -11,12 +12,14 @@ if(isset($_GET) && !empty($_GET))
     $type = $_GET['type'];
     $filter_name = $_GET['filter_name'];
     $sort_by = $_GET['sort_by'];
+    $order = $_GET['order'];
 }
 
 //TODO:
 //Handle empties/defaults
 if($sort_by == '') $sort_by = '2';
 if($type == '') $type = 'games';
+if($order == '') $order = 'asc';
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +39,7 @@ width="2" height="0">
         <div id="search_area">
             <?php
             include 'functions.php';
-            makeForm($type, $filter_name, $sort_by);
+            makeForm($type, $filter_name, $sort_by, $order);
             ?>
         </div>
        
