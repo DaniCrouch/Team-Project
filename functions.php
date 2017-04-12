@@ -4,7 +4,7 @@
 //Because, you know, a set of radio buttons is behaviorally identical to a Dropdown
 function makeRadios($title, $name, $value, $radioNames, $radioValues)
 {
-    echo '<strong>'.$title.':</strong><br/>';
+    echo '<label><strong>'.$title.':</strong></label><br/>';
     for($i=0;$i<count($radioValues);$i++)
     {
         $n = $radioNames[$i];
@@ -20,7 +20,7 @@ function makeForm($type, $filter_name, $sort_by, $order)
 {
     echo '<form>';
     
-    echo '<input class="textbox" type="text" name="filter_name" value="'.$filter_name.'"/><br/>';
+    echo '<label><strong>Filter: </strong></label><br/><input class="textbox" type="text" name="filter_name" value="'.$filter_name.'"/><br/>';
     
     makeRadios("Search for", "type", $type, array("Games", "Characters"), array("games","chars"));
     
