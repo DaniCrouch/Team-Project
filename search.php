@@ -32,7 +32,7 @@ if($order == '') $order = 'asc';
     </head>
     <body>
       
-<embed src="/Team-Project/img/Velvet's Theme (Full Version) - Tales of Berseria Music.mp3" autostart="true" loop="true"
+<embed src="mp3/background.mp3" autostart="true" loop="true"
 width="2" height="0">
 </embed>
 <div id="wrapper">
@@ -45,7 +45,7 @@ width="2" height="0">
        
         <div id="results_area">
             <?php
-            getSearch($type, $filter_name, $sort_by);
+            getSearch($type, $filter_name, $sort_by, $order);
             ?>
         </div>
         </div>
