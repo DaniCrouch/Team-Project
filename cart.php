@@ -14,12 +14,11 @@ if(!isset($_SESSION) || empty($_SESSION))
 }
 else
 {
-    // SESSION was set correctly, display the item
-    // TODO
+    // SESSION was set correctly, display the cart
 
     // This generates the page
     makePage("Tales Shop - Shopping cart", 
-    "TODO: NOT YET IMPLEMENTED"
+        makeCart($_SESSION['cart'])
     );
     
 }

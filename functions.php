@@ -89,4 +89,26 @@ function makeResult($row, $index)
     $result.='</tr>';
     return $result;
 }
+
+function makeCart($cart)
+{
+    // $cart should be an array of integers
+    //TODO
+    $result ='NOT YET IMPLEMENTED';
+    $result.='';
+    
+    return $result;
+    
+}
+
+function makeItemInfo($item)
+{
+    // $item should be an int
+    //TODO
+    $result ='NOT YET IMPLEMENTED';
+    $result.='';
+    
+    return $result;
+    
+}
 ?>

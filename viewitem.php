@@ -2,9 +2,6 @@
 
 include 'functions.php';
 
-// Default GET vars
-$result = 0;
-
 // Check that GET is not empty
 if(!isset($_GET) || empty($_GET) || !isset($_GET['result_clicked']))
 {
@@ -22,7 +19,7 @@ else
 
     // This generates the page
     makePage("Tales Shop", 
-    "TODO: NOT YET IMPLEMENTED"
+        makeItemInfo($_GET['result_clicked'])
     );
     
 }
