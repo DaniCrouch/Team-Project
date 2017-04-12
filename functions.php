@@ -1,5 +1,27 @@
 <?php
 
+function makePage($title, $body)
+{
+    echo "
+    
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>$title</title>
+        <style>
+            @import url('css/style.css');
+        </style>
+    </head>
+    <body>
+        $body
+        <embed src='mp3/background.mp3' autostart='true' loop='true' width='2' height='0'>
+        </embed>
+    </body>
+</html>
+    
+    ";
+}
+
 //A magical function that makes a set of radio buttons
 //Because, you know, a set of radio buttons is behaviorally identical to a Dropdown
 function makeRadios($title, $name, $value, $radioNames, $radioValues)
