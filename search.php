@@ -13,8 +13,6 @@ if(isset($_GET) && !empty($_GET))
 {
     if(isset($_GET['result_clicked']))
     {
-        //TODO: REDIRECT TO VIEWITEM
-       
         header("Location: viewitem.php?item=".$_GET['result_clicked']);
     }
     else if(isset($_GET['result_added']))
@@ -23,7 +21,6 @@ if(isset($_GET) && !empty($_GET))
         {
             $_SESSION['cart'] = array();
         }
-        //TODO: REDIRECT TO VIEWITEM
         $_SESSION['cart'][] = $_GET['result_added'];
     }
 
