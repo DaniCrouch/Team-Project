@@ -46,6 +46,16 @@ switch ($sort_by)
 {
     //todo
     default:
+        switch ($type)
+        {
+            case 'game':
+            case 'character':
+            case 'world':
+                break;
+            default:
+                $type='game';
+                break;
+        }
         $sort_by='name';
         break;
 }

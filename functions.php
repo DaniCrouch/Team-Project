@@ -30,10 +30,9 @@ function makePage($title, $body)
 
     ";
 }
-
 //A magical function that makes a set of radio buttons
 //Because, you know, a set of radio buttons is behaviorally identical to a Dropdown
-function makeRadios($title, $name, $value, $radioNames, $radioValues)
+function makeRadios($title, $name, $value, $radioNames, $radioValues, $onclick)
 {
     $result = '';
     $result.='<label><strong>'.$title.':</strong></label><br/>';
@@ -42,24 +41,7 @@ function makeRadios($title, $name, $value, $radioNames, $radioValues)
         $n = $radioNames[$i];
         $v = $radioValues[$i];
         $c = ($v == $value?'checked':'');
-        $result.='<input class="radio" type="radio" name="'.$name.'" value="'.$v.'"'.$c.'>'.$n.'</input>';
-    }
-    $result.='<br/>';
-    return $result;
-}
-
-//A magical function that makes a set of radio buttons
-//Because, you know, a set of radio buttons is behaviorally identical to a Dropdown
-function makeDropdown($title, $name, $value, $radioNames, $radioValues)
-{
-    $result = '';
-    $result.='<label><strong>'.$title.':</strong></label><br/>';
-    for($i=0;$i<count($radioValues);$i++)
-    {
-        $n = $radioNames[$i];
-        $v = $radioValues[$i];
-        $c = ($v == $value?'checked':'');
-        $result.='<input class="radio" type="radio" name="'.$name.'" value="'.$v.'"'.$c.'>'.$n.'</input>';
+        $result.='<input id="radio_'.$v.'" onclick="'.$onclick.'" class="radio" type="radio" name="'.$name.'" value="'.$v.'"'.$c.'>'.$n.'</input>';
     }
     $result.='<br/>';
     return $result;
@@ -69,15 +51,58 @@ function makeDropdown($title, $name, $value, $radioNames, $radioValues)
 function makeForm($type, $filter_name, $sort_by, $order)
 {
     $result = '';
-    $result.='<div id="search_area"><form>';
+    $result.="<div id='search_area'><form>
     
-    $result.=makeRadios("Search for", "type", $type, array("Games", "Characters", "Worlds"), array("game","character","world"));
+        <script>
+            function radio_changed()
+            {
+                if(document.getElementById('radio_game').checked)
+                {
+                    document.getElementById('sort_game').style.display = 'block';
+                    document.getElementById('sort_character').style.display = 'none';
+                    document.getElementById('sort_world').style.display = 'none';
+                }
+                else if(document.getElementById('radio_character').checked)
+                {
+                    document.getElementById('sort_game').style.display = 'none';
+                    document.getElementById('sort_character').style.display = 'block';
+                    document.getElementById('sort_world').style.display = 'none';
+                }
+                else if(document.getElementById('radio_world').checked)
+                {
+                    document.getElementById('sort_game').style.display = 'none';
+                    document.getElementById('sort_character').style.display = 'none';
+                    document.getElementById('sort_world').style.display = 'block';
+                }
+            }
+        </script>
+    
+    
+    ";
+    
+    $result.=makeRadios("Search for", "type", $type, array("Games", "Characters", "Worlds"), array("game","character","world"), "radio_changed()");
    
     $result.='<label><strong>Filter: </strong></label><br/><input class="textbox" type="text" name="filter_name" value="'.$filter_name.'"/><br/>';
     
-    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("Sort option 1", "Sort option 2"), array("1", "2"));
+    $result.="<div id='sort_game' ";
+    if($type != 'game')$result.="style='display:none;'";
+    $result.=">";
+    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("Name", "Year", "Number of characters", "Platforms", "Average play time", "price"), array("name", "year", "num_chars", "platforms", "avg_play_time", "price"), "");
+    $result.="</div>";
     
-    $result.=makeRadios("Order", "order", $order, array("Ascending", "Descending"), array("asc", "desc"));
+    $result.="<div id='sort_character' ";
+    if($type != 'character')$result.="style='display:none;'";
+    $result.=">";
+    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("First name", "Last name", "Sex", "Age", "Hometown"), array("first_Name", "last_Name", "sex", "age", "hometown"), "");
+    $result.="</div>";
+    
+    $result.="<div id='sort_world' ";
+    if($type != 'world')$result.="style='display:none;'";
+    $result.=">";
+    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("Name", "Number of towns", "Capital"), array("name", "num_towns", "capital"), "");
+    $result.="</div>";
+    
+    $result.=makeRadios("Order", "order", $order, array("Ascending", "Descending"), array("asc", "desc"), "");
     
     $result.='<button class="button">Search</button>';
     
