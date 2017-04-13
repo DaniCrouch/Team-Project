@@ -2,17 +2,20 @@
     
 }
 .button {
-    
+    display: inline-block;
 }
 .radio {
     
 }
 form {
+    display: inline-block;
     background-color: white;
+    
+}
+#search_area{
     width: 590px;
     border: 1px solid blue;
-   margin-left:350px;
-    
+    margin-left:350px;
 }
 input[type=text] {
     border: 2px solid red;
@@ -35,4 +38,23 @@ img{
     border-radius: 8px;
     height:200px;
     width:140px;
+}
+table
+{
+    border-collapse: collapse;
+}
+tr
+{
+    border-bottom: solid black 1px;
+}
+th
+{
+    padding: 5px;
+    border: solid black 2px;
+}
+td
+{
+    text-align: center;
+    border-left: solid black 1px;
+    border-right: solid black 1px;
 }

@@ -32,12 +32,7 @@ if(isset($_GET) && !empty($_GET))
     $order = $_GET['order'];
 }
 
-//TODO:
-//Handle empties/defaults
-if($sort_by == '') $sort_by = '2';
-if($order == '') $order = 'asc';
-
-// Ensure that only these search types are allowed to avoid injeciton
+// Handle values
 switch ($type)
 {
     case 'game':
@@ -47,6 +42,21 @@ switch ($type)
     default:
         $type='game';
         break;
+}
+switch ($sort_by)
+{
+    //todo
+    default:
+        $sort_by='name';
+        break;
+}
+switch ($order)
+{
+    case 'desc':
+    case 'asc':
+        break;
+    default:
+        $order='asc';
 }
 
 // This generates the page
