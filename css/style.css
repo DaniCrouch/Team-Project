@@ -2,7 +2,9 @@
     background-color: white;
 }
 .button {
-   background-color: white;
+   background-color: #84724f;
+   border-color: black;
+   color:white;
    
 }
 .radio {
@@ -18,30 +20,29 @@ form {
     display: inline-block;
     text-align: center;
     border: 1px solid blue;
-
-    margin-left:350px;
     background-color:white;
 
-    padding: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
 }
 input[type=text] {
     border: 2px solid red;
     border-radius: 4px;
 }
 #search_results {
-    background-color: white;
+    
     color:blue;
+   
 }
-
+        
 body{
     background-image: url("/Team-Project/img/Screenshot (109).png");
     text-align: center;
-    color:white;
-    font-family: 'Indie Flower', cursive;
+    
+ 
+   font-family: "Times New Roman", serif;
 }
-.wrapper{
-background:white !important;
-}
+
 img{
     border-radius: 8px;
     height:200px;
@@ -50,8 +51,9 @@ img{
 table
 {
     border-collapse: collapse;
-    background-color: white;
     color:blue;
+    background-color: white
+
 }
 tr
 {

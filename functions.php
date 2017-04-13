@@ -8,8 +8,11 @@ function makePage($title, $body)
 <html>
     <head>
         <title>$title</title>
+      
         <style>
+        
             @import url('css/style.css');
+            
         </style>
     </head>
     <body>
@@ -176,7 +179,7 @@ function makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_tim
         $result.='</td>';
         $result.='<td>';
             $result.=$avg_play_time;
-        $result.='</td>';
+        $result.=' hours</td>';
         $result.='<td>$';
             $result.=$price;
         $result.='</td>';

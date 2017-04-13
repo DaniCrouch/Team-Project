@@ -3,6 +3,7 @@
 include 'functions.php';
 
 // Check that GET is not empty
+
 if(!isset($_GET) || empty($_GET))
 {
     // GET is empty, display an error
@@ -36,3 +37,4 @@ else
 }
 
 ?>
+
