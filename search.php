@@ -25,6 +25,7 @@ if(isset($_GET) && !empty($_GET))
         //TODO: REDIRECT TO VIEWITEM
         $_SESSION['cart'][] = $_GET['result_added'];
     }
+
     
     $type = $_GET['type'];
     $filter_name = $_GET['filter_name'];

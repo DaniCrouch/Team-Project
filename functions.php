@@ -14,9 +14,11 @@ function makePage($title, $body)
     </head>
     <body>
         <nav>
-            <a href='search.php' class='.button'>Home</a>
-            <a href='cart.php' class='.button'>Shopping Cart</a>
+      
+            <a href='search.php' class='.button'> <img src='img/home.png' alt= 'image of a home' style= 'width:42px;height:42px;border:0;'></a>
+            <a href='cart.php' class='.button'> <img src='img/cart.png' alt: 'image of a shopping cart' style='width:42px;height:42px;border:0;'></a>
         </nav>
+        
         $body
         <embed src='mp3/background.mp3' autostart='true' loop='true' width='2' height='0'>
         </embed>
