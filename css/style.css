@@ -1,8 +1,9 @@
 .textbox {
-    
+    background-color: white;
 }
 .button {
-    display: inline-block;
+   background-color: white;
+   
 }
 .radio {
     
@@ -10,25 +11,29 @@
 form {
     display: inline-block;
     background-color: white;
+    color:blue;
     
 }
 #search_area{
     width: 590px;
     border: 1px solid blue;
     margin-left:350px;
+    background-color:white;
+    
 }
 input[type=text] {
     border: 2px solid red;
     border-radius: 4px;
 }
 #search_results {
-    
+    background-color: white;
+    color:blue;
 }
 
 body{
     background-image: url("/Team-Project/img/Screenshot (109).png");
     text-align: center;
-    color:blue;
+    color:white;
     font-family: 'Indie Flower', cursive;
 }
 .wrapper{
@@ -42,6 +47,8 @@ img{
 table
 {
     border-collapse: collapse;
+    background-color: white;
+    color:blue;
 }
 tr
 {
