@@ -2,7 +2,9 @@
     background-color: white;
 }
 .button {
-   background-color: white;
+   background-color: #84724f;
+   border-color: black;
+   color:white;
    
 }
 .radio {

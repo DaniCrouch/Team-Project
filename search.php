@@ -14,6 +14,7 @@ if(isset($_GET) && !empty($_GET))
     if(isset($_GET['result_clicked']))
     {
         //TODO: REDIRECT TO VIEWITEM
+       
         header("Location: viewitem.php?item=".$_GET['result_clicked']);
     }
     else if(isset($_GET['result_added']))
