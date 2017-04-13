@@ -185,8 +185,11 @@ function makeCharSearch($filter_name, $sort_by, $order)
 {
     $db = new mysqli("localhost","team_project","","team_project");
     $query =
-    "SELECT * FROM game ";
-    if($filter_name != '') $query .= "WHERE name LIKE ? ";
+    "SELECT (character.first_Name, character.last_Name, character.first_Name,".
+    " game.name, game.game_id, character.sex, character.age, character.hometown)".
+    "FROM game, character WHERE game.game_id=character.game_id ";
+    if($filter_name != '') $query .= 
+    "WHERE character.first_Name LIKE ? OR character.last_Name LIKE ? ";
     $query.="ORDER BY $sort_by $order;";
     if ($db->connect_errno)
     {
@@ -208,14 +211,12 @@ function makeCharSearch($filter_name, $sort_by, $order)
     $result = '';
     $result.='<div id="search_results"><table align="center"><tr><tbody>';
     $result.="<th></th>";
-    $result.="<th></th>";
-    $result.="<th></th>";
     $result.="<th>Name</th>";
     $result.="<th>Year</th>";
-    $result.="<th>Characters</th>";
-    $result.="<th>Platform(s)</th>";
-    $result.="<th>Average play time</th>";
-    $result.="<th>Price</th><tr>";
+    $result.="<th>Game</th>";
+    $result.="<th>sex</th>";
+    $result.="<th>age</th>";
+    $result.="<th>Hometown</th><tr>";
     while($k->fetch())
     {
         
