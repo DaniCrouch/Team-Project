@@ -1,42 +1,47 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 13, 2017 at 03:10 AM
+-- Server version: 5.5.53-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.20
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+--
+-- Database: `team_project`
+--
 
-CREATE TABLE IF NOT EXISTS `Games` (
-  `Game_id` int(11) NOT NULL,
-  `Name` varchar(50) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
-  `Year_Released` int(11) NOT NULL,
-  `Number_of_Characters` int(11) NOT NULL,
-  `Platform(s)` varchar(20) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
-  `Average_Play_Time` tinyint(4) NOT NULL,
-  `Cost` int(4) NOT NULL,
-  PRIMARY KEY (`Game_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
 
-INSERT INTO `Games` (`Game_id`, `Name`, `Year_Released`, `Number_of_Characters`, `Platform(s)`, `Average_Play_Time`, `Cost`) VALUES
-(1, 'Tales of Berseria', 2016, 6, 'Playstation 4', 70, 50),
-(2, 'Tales of Xillia', 2011, 6, 'Play Station 3', 51, 30),
-(3, 'Tales of Symphonia', 2003, 9, 'Gamecube', 66, 20),
-(4, 'Tales of Destiny', 1997, 9, 'Playstation', 37, 85),
-(5, 'Tales of Vesperia', 2008, 9, 'Playstation 3', 72, 25);
+--
+-- Table structure for table `character`
+--
 
-CREATE TABLE IF NOT EXISTS `Main_Characters` (
+CREATE TABLE IF NOT EXISTS `character` (
   `name_id` int(11) NOT NULL,
   `first_Name` varchar(11) NOT NULL,
   `last_Name` varchar(11) DEFAULT NULL,
-  `Game_id` int(11) NOT NULL,
-  `Gender` varchar(1) NOT NULL,
-  `Age` int(11) NOT NULL,
-  `Hometown` varchar(11) DEFAULT NULL,
+  `game_id` int(11) NOT NULL,
+  `sex` varchar(1) NOT NULL,
+  `age` int(11) NOT NULL,
+  `hometown` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`name_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Main_Characters` (`name_id`, `first_Name`, `last_Name`, `Game_id`, `Gender`, `Age`, `Hometown`) VALUES
+--
+-- Dumping data for table `character`
+--
+
+INSERT INTO `character` (`name_id`, `first_Name`, `last_Name`, `game_id`, `sex`, `age`, `hometown`) VALUES
 (1, 'Velvet', 'Crowe', 1, 'F', 19, 'Aball'),
 (2, 'Laphicet', NULL, 1, 'M', 10, NULL),
 (3, 'Eizen', NULL, 1, 'M', 30, NULL),
@@ -77,16 +82,54 @@ INSERT INTO `Main_Characters` (`name_id`, `first_Name`, `last_Name`, `Game_id`, 
 (38, 'Judith', NULL, 5, 'F', 19, 'Temza'),
 (39, 'Patty', 'Fleur', 5, 'F', 14, 'Capua Torim');
 
-CREATE TABLE IF NOT EXISTS `Worlds` (
-  `World_id` int(11) NOT NULL,
-  `World_Name` varchar(20) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
-  `Number_of_Towns` int(11) NOT NULL,
-  `Game_id` int(1) NOT NULL,
-  `Capital_City` varchar(15) NOT NULL,
-  PRIMARY KEY (`World_id`)
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game`
+--
+
+CREATE TABLE IF NOT EXISTS `game` (
+  `game_id` int(11) NOT NULL,
+  `name` varchar(50) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `year` int(11) NOT NULL,
+  `num_chars` int(11) NOT NULL,
+  `platforms` varchar(20) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `avg_play_time` tinyint(4) NOT NULL,
+  `price` int(4) NOT NULL,
+  PRIMARY KEY (`game_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `Worlds` (`World_id`, `World_Name`, `Number_of_Towns`, `Game_id`, `Capital_City`) VALUES
+--
+-- Dumping data for table `game`
+--
+
+INSERT INTO `game` (`game_id`, `name`, `year`, `num_chars`, `platforms`, `avg_play_time`, `price`) VALUES
+(1, 'Tales of Berseria', 2016, 6, 'Playstation 4', 70, 50),
+(2, 'Tales of Xillia', 2011, 6, 'Play Station 3', 51, 30),
+(3, 'Tales of Symphonia', 2003, 9, 'Gamecube', 66, 20),
+(4, 'Tales of Destiny', 1997, 9, 'Playstation', 37, 85),
+(5, 'Tales of Vesperia', 2008, 9, 'Playstation 3', 72, 25);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `world`
+--
+
+CREATE TABLE IF NOT EXISTS `world` (
+  `world_id` int(11) NOT NULL,
+  `name` varchar(20) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `num_towns` int(11) NOT NULL,
+  `game_id` int(1) NOT NULL,
+  `capital` varchar(15) NOT NULL,
+  PRIMARY KEY (`world_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `world`
+--
+
+INSERT INTO `world` (`world_id`, `name`, `num_towns`, `game_id`, `capital`) VALUES
 (1, 'Desolation', 10, 1, 'Loegres'),
 (2, 'Rieze Maxia', 12, 2, 'Kanbalar'),
 (3, 'Sylvarant', 16, 3, 'Palmacosta'),

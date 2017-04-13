@@ -35,8 +35,19 @@ if(isset($_GET) && !empty($_GET))
 //TODO:
 //Handle empties/defaults
 if($sort_by == '') $sort_by = '2';
-if($type == '') $type = 'games';
 if($order == '') $order = 'asc';
+
+// Ensure that only these search types are allowed to avoid injeciton
+switch ($type)
+{
+    case 'game':
+    case 'character':
+    case 'world':
+        break;
+    default:
+        $type='game';
+        break;
+}
 
 // This generates the page
 makePage("Tales Shop - Search", 
