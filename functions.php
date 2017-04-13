@@ -215,7 +215,6 @@ function makeCharSearch($filter_name, $sort_by, $order)
         $filter_name = '%'.$filter_name.'%';
         $k->bind_param("s", $filter_name);
     }
-    echo $query;
     $k->execute();
     $k->bind_result($name_id, $first_Name, $last_Name, $gamename, $game_id, $sex, $age, $hometown);
     
