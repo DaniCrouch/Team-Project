@@ -349,11 +349,11 @@ function makeWorldResult($id, $name, $num_towns, $game_id, $gamename, $capital)
 
 function makeCart($cart)
 {
-    $db = new mysqli("localhost","team_project","","team_project");
     if(count($cart)==0)
     {
         return "Your cart is empty.";
     }
+    $db = new mysqli("localhost","team_project","","team_project");
     if ($db->connect_errno)
     {
         return "Sorry, this website is experiencing problems.<br/>".
@@ -362,19 +362,34 @@ function makeCart($cart)
         "Error: " . $db->connect_error . "<br/>";
     }
     $result ='';
-    $result.='<table><tbody>';
+    $result.='<table align="center"><tbody>';
     $result.='<tr>';
-    
     $result.='<th>';
-    
+    $result.='</th>';
+    $result.='<th>';
+    $result.='</th>';
+    $result.='<th>';
+    $result.=$name;
+    $result.='</th>';
+    $result.='<th>';
+    $result.=$price;
     $result.='</th>';
     
     $result.='</tr>';
-    $query = 'SELECT * FROM game;';
+    $query = 'SELECT * FROM game WHERE game_id=?;';
+        $k = $db->prepare($query);
+        if ( !$k )
+        {
+            echo $query;
+            printf('errno: %d, error: %s', $db->errno, $db->error);
+            die;
+        }
     foreach($cart as $item)
     {
-        $k = $db->prepare($query);
         $k->bind_param("i", $item);
+        $k->execute();
+        $k->bind_result($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+        $k->fetch();
         $result.=makeCartResult($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
     }
     $result.='<tbody></table>';
@@ -394,12 +409,6 @@ function makeCartResult($id, $name, $year, $num_chars, $platforms, $avg_play_tim
             $result.='</form>';
         $result.='</td>';
         $result.='<td>';
-            $result.='<form>';
-            $result.='<input type="hidden" name="result_added" value="'.$id.'">';
-            $result.='<button class="button">Add to cart</button>';
-            $result.='</form>';
-        $result.='</td>';
-        $result.='<td>';
             $result.='<img src="img/games/';
             $result.=$id;
             $result.='.png"/>';
@@ -407,18 +416,6 @@ function makeCartResult($id, $name, $year, $num_chars, $platforms, $avg_play_tim
         $result.='<td>';
             $result.=$name;
         $result.='</td>';
-        $result.='<td>';
-            $result.=$year;
-        $result.='</td>';
-        $result.='<td>';
-            $result.=$num_chars;
-        $result.='</td>';
-        $result.='<td>';
-            $result.=$platforms;
-        $result.='</td>';
-        $result.='<td>';
-            $result.=$avg_play_time;
-        $result.=' hours</td>';
         $result.='<td>$';
             $result.=$price;
         $result.='</td>';

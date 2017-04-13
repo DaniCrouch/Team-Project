@@ -15,7 +15,6 @@ if(!isset($_SESSION) || empty($_SESSION))
 else
 {
     // SESSION was set correctly, display the cart
-
     // This generates the page
     makePage("Tales Shop - Shopping cart", 
         makeCart($_SESSION['cart'])
