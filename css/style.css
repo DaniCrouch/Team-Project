@@ -8,13 +8,22 @@
    
 }
 .radio {
-    
+    background-color: #84724f;
+   border-color: black;
+   color:white;
 }
 form {
     display: inline-block;
     background-color: white;
     color:blue;
     
+}
+.view{
+    display:inline-block;
+    background-color: white;
+    text-align: center;
+    padding-left: 150px;
+    padding-right: 150px;
 }
 #search_area{
     display: inline-block;
@@ -29,8 +38,6 @@ input[type=text] {
     border: 2px solid black;
     border-radius: 4px;
     background-color: #84724f;
-    
- 
 }
 
 
@@ -44,7 +51,7 @@ body{
     background-image: url("../img/Screenshot (109).png");
     text-align: center;
     
- 
+ color:blue;
    font-family: "Times New Roman", serif;
 }
 
