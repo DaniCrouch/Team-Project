@@ -42,21 +42,54 @@ switch ($type)
         $type='game';
         break;
 }
-switch ($sort_by)
+switch ($type)
 {
-    //todo
-    default:
-        switch ($type)
+    case 'game':
+        switch ($sort_by)
         {
-            case 'game':
-            case 'character':
-            case 'world':
+            case 'name':
+            case 'year':
+            case 'num_chars':
+            case 'platforms':
+            case 'avg_play_time':
+            case 'price':
                 break;
             default:
-                $type='game';
+            $sort_by='name';
                 break;
         }
+    case 'character':
+        switch ($sort_by)
+        {
+            case 'first_Name':
+            case 'last_Name':
+            case 'sex':
+            case 'age':
+            case 'hometown':
+                break;
+            default:
+            $sort_by='first_Name';
+                break;
+        }
+    case 'world':
+        switch ($sort_by)
+        {
+            case 'name':
+            case 'num_towns':
+            case 'capital':
+                break;
+            default:
+            $sort_by='name';
+                break;
+        }
+        break;
+    default:
         $sort_by='name';
+        break;
+}
+switch ($sort_by)
+{
+    default:
         break;
 }
 switch ($order)
