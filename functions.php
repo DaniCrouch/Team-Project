@@ -187,12 +187,14 @@ function makeCharSearch($filter_name, $sort_by, $order)
 {
     $db = new mysqli("localhost","team_project","","team_project");
     $query =
-    "SELECT (character.first_Name, character.last_Name, character.first_Name,".
-    " game.name, game.game_id, character.sex, character.age, character.hometown)".
-    "FROM game, character WHERE game.game_id=character.game_id ";
-    if($filter_name != '') $query .= 
-    "WHERE character.first_Name LIKE ? OR character.last_Name LIKE ? ";
-    $query.="ORDER BY $sort_by $order;";
+    "SELECT (character.name_id, character.first_Name, character.last_Name, ".
+    "game.name, character.sex, character.age, character.hometown) ".
+    "FROM character;";
+    //if($filter_name != '') $query .= 
+    //"AND (character.first_Name LIKE ? OR character.last_Name LIKE ?) ";
+    
+    
+    //$query.="ORDER BY first_Name $order;";
     if ($db->connect_errno)
     {
         return "Sorry, this website is experiencing problems.<br/>".
@@ -201,14 +203,20 @@ function makeCharSearch($filter_name, $sort_by, $order)
         "Error: " . $db->connect_error . "<br/>";
     }
     $k = $db->prepare($query);
+    if ( !$k )
+    {
+    echo $query;
+        printf('errno: %d, error: %s', $db->errno, $db->error);
+        die;
+    }
     if($filter_name != '')
     {
         $filter_name = '%'.$filter_name.'%';
         $k->bind_param("s", $filter_name);
     }
-    
+    echo $query;
     $k->execute();
-    $k->bind_result($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    $k->bind_result($name_id, $first_Name, $last_Name, $gamename, $game_id, $sex, $age, $hometown);
     
     $result = '';
     $result.='<div id="search_results"><table align="center"><tr><tbody>';
@@ -222,17 +230,50 @@ function makeCharSearch($filter_name, $sort_by, $order)
     while($k->fetch())
     {
         
-        $result.=makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+        $result.=makeCharResult($name_id, $first_Name, $last_Name, $gamename, $game_id, $sex, $age, $hometown);
     }
     
     $result.='</tbody></table></div>';
     return $result;
 }
-function makeCharResult($row)
+function makeCharResult($name_id, $first_Name, $last_Name, $gamename, $game_id, $sex, $age, $hometown)
 {
     $result = '';
     $result.='<tr>';
         $result.='<td>';
+        
+        $result.='<img src="img/char/'.$name_id.'"/>';
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.= $first_Name;
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.= $last_Name;
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.="<a href='viewitem.php?item=$game_id'>$gamename</a>";
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.=$sex;
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.=$age;
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.=$hometown;
+        
         $result.='</td>';
     $result.='</tr>';
     return $result;
