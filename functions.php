@@ -8,8 +8,11 @@ function makePage($title, $body)
 <html>
     <head>
         <title>$title</title>
+      
         <style>
+        
             @import url('css/style.css');
+            
         </style>
     </head>
     <body>
