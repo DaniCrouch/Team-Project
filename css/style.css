@@ -13,9 +13,10 @@ form {
     
 }
 #search_area{
-    width: 590px;
+    display: inline-block;
+    text-align: center;
     border: 1px solid blue;
-    margin-left:350px;
+    padding: 50px;
 }
 input[type=text] {
     border: 2px solid red;
