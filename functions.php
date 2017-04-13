@@ -82,20 +82,21 @@ function makeForm($type, $filter_name, $sort_by, $order)
 
 function makeSearch($type, $filter_name, $sort_by, $order)
 {
-    $query = "SELECT * FROM $type WHERE "
+    $query = "SELECT * FROM $type WHERE ";
+    
     switch ($type)
     {
-        case 'game':
+        case "game":
             $query .= "? LIKE '%?%';";
             $k = $db->prepare($query);
             $k->bind_param("s", $filter_name);
             break;
-        case 'character':
+        case "character":
             $query .= "? LIKE '%$filter_name%';";
             $k = $db->prepare($query);
             $k->bind_param("");
             break;
-        case 'world':
+        case "world":
             $query .= "? LIKE '%$filter_name%';";
             $k = $db->prepare($query);
             $k->bind_param("");
