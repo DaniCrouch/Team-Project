@@ -369,10 +369,10 @@ function makeCart($cart)
     $result.='<th>';
     $result.='</th>';
     $result.='<th>';
-    $result.=$name;
+    $result.="Name";
     $result.='</th>';
     $result.='<th>';
-    $result.=$price;
+    $result.="Price";
     $result.='</th>';
     
     $result.='</tr>';
