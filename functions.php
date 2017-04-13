@@ -214,8 +214,8 @@ function makeCharSearch($filter_name, $sort_by, $order)
     $result.="<th>Name</th>";
     $result.="<th>Year</th>";
     $result.="<th>Game</th>";
-    $result.="<th>sex</th>";
-    $result.="<th>age</th>";
+    $result.="<th>Sex</th>";
+    $result.="<th>Age</th>";
     $result.="<th>Hometown</th><tr>";
     while($k->fetch())
     {
