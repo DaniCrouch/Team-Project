@@ -243,7 +243,7 @@ function makeCharResult($name_id, $first_Name, $last_Name, $gamename, $game_id, 
     $result.='<tr>';
         $result.='<td>';
         
-        $result.='<img src="img/char/'.$name_id.'"/>';
+        $result.='<img src="img/char/'.$name_id.'.png"/>';
         
         $result.='</td>';
         $result.='<td>';
