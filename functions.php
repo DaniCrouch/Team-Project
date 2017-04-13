@@ -158,7 +158,7 @@ function makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_tim
         $result.='<td>';
             $result.='<img src="img/games/';
             $result.=$id;
-            $result.='"/>';
+            $result.='.png"/>';
         $result.='</td>';
         $result.='<td>';
             $result.=$name;
