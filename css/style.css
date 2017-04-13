@@ -1,5 +1,5 @@
 .textbox {
-    background-color: white;
+    background-color: #a3624c;
 }
 .button {
    background-color: #84724f;
@@ -14,23 +14,26 @@
 }
 form {
     display: inline-block;
-    background-color: white;
-    color:blue;
+    background-color: #a3624c;
+    color:#67bf88;
     
 }
 .view{
     display:inline-block;
-    background-color: white;
+    background-color: #a3624c;
     text-align: center;
+    border-color: 2px solid black;
     padding-left: 150px;
     padding-right: 150px;
+    color:#67bf88;
+    border-radius: 30%;
 }
 #search_area{
     display: inline-block;
     text-align: center;
-    border: 1px solid blue;
-    background-color:white;
-
+    border: 1px solid black;
+    background-color:#a3624c;
+border-radius: 30%;
     padding-left: 150px;
     padding-right: 150px;
 }
@@ -51,7 +54,7 @@ body{
     background-image: url("../img/Screenshot (109).png");
     text-align: center;
     
- color:blue;
+ color:red;
    font-family: "Times New Roman", serif;
 }
 
@@ -64,8 +67,8 @@ table
 {
     
     border-collapse: collapse;
-    color:blue;
-    background-color: white
+    color:#67bf88;
+    background-color: #a3624c;
 
 }
 tr

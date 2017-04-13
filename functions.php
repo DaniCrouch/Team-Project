@@ -329,6 +329,7 @@ function makeWorldSearch($filter_name, $sort_by, $order)
     
     $result = '';
     $result.='<div id="search_results"><table align="center"><tr><tbody>';
+     $result.="<th></th>";
     $result.="<th>Name</th>";
     $result.="<th>Towns</th>";
     $result.="<th>Capital</th>";
@@ -346,6 +347,11 @@ function makeWorldResult($id, $name, $num_towns, $game_id, $gamename, $capital)
 {
     $result = '';
     $result.='<tr>';
+    $result.='<td>';
+        
+        $result.='<img src="img/world/'.$id.'.png"/>';
+        
+        $result.='</td>';
         $result.='<td>';
         
         $result.= $name;
