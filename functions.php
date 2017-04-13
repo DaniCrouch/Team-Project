@@ -183,12 +183,47 @@ function makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_tim
 }
 function makeCharSearch($filter_name, $sort_by, $order)
 {
-    global $db;
+    $db = new mysqli("localhost","team_project","","team_project");
     $query =
-    "SELECT (name, year, num_chars, platforms, avg_play_time, price) ".
-    "FROM character WHERE name LIKE '%?%' SORT BY ? ?";
+    "SELECT * FROM game ";
+    if($filter_name != '') $query .= "WHERE name LIKE ? ";
+    $query.="ORDER BY $sort_by $order;";
+    if ($db->connect_errno)
+    {
+        return "Sorry, this website is experiencing problems.<br/>".
+        "Error: Failed to make a MySQL connection, here is why: <br/>".
+        "Errno: " . $db->connect_errno . "<br/>".
+        "Error: " . $db->connect_error . "<br/>";
+    }
     $k = $db->prepare($query);
-    $k->bind_param("sss", $filter_name, $sort_by, $order);
+    if($filter_name != '')
+    {
+        $filter_name = '%'.$filter_name.'%';
+        $k->bind_param("s", $filter_name);
+    }
+    
+    $k->execute();
+    $k->bind_result($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    
+    $result = '';
+    $result.='<div id="search_results"><table align="center"><tr><tbody>';
+    $result.="<th></th>";
+    $result.="<th></th>";
+    $result.="<th></th>";
+    $result.="<th>Name</th>";
+    $result.="<th>Year</th>";
+    $result.="<th>Characters</th>";
+    $result.="<th>Platform(s)</th>";
+    $result.="<th>Average play time</th>";
+    $result.="<th>Price</th><tr>";
+    while($k->fetch())
+    {
+        
+        $result.=makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    }
+    
+    $result.='</tbody></table></div>';
+    return $result;
 }
 function makeCharResult($row)
 {
@@ -201,12 +236,47 @@ function makeCharResult($row)
 }
 function makeWorldSearch($filter_name, $sort_by, $order)
 {
-    global $db;
+    $db = new mysqli("localhost","team_project","","team_project");
     $query =
-    "SELECT (name, year, num_chars, platforms, avg_play_time, price) ".
-    "FROM world WHERE name LIKE '%?%' SORT BY ? ?";
+    "SELECT * FROM game ";
+    if($filter_name != '') $query .= "WHERE name LIKE ? ";
+    $query.="ORDER BY $sort_by $order;";
+    if ($db->connect_errno)
+    {
+        return "Sorry, this website is experiencing problems.<br/>".
+        "Error: Failed to make a MySQL connection, here is why: <br/>".
+        "Errno: " . $db->connect_errno . "<br/>".
+        "Error: " . $db->connect_error . "<br/>";
+    }
     $k = $db->prepare($query);
-    $k->bind_param("sss", $filter_name, $sort_by, $order);
+    if($filter_name != '')
+    {
+        $filter_name = '%'.$filter_name.'%';
+        $k->bind_param("s", $filter_name);
+    }
+    
+    $k->execute();
+    $k->bind_result($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    
+    $result = '';
+    $result.='<div id="search_results"><table align="center"><tr><tbody>';
+    $result.="<th></th>";
+    $result.="<th></th>";
+    $result.="<th></th>";
+    $result.="<th>Name</th>";
+    $result.="<th>Year</th>";
+    $result.="<th>Characters</th>";
+    $result.="<th>Platform(s)</th>";
+    $result.="<th>Average play time</th>";
+    $result.="<th>Price</th><tr>";
+    while($k->fetch())
+    {
+        
+        $result.=makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    }
+    
+    $result.='</tbody></table></div>';
+    return $result;
 }
 function makeWorldResult($row)
 {
