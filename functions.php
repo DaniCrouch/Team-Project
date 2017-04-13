@@ -84,23 +84,23 @@ function makeForm($type, $filter_name, $sort_by, $order)
    
     $result.='<label><strong>Filter: </strong></label><br/><input class="textbox" type="text" name="filter_name" value="'.$filter_name.'"/><br/>';
     
-    $result.="<div id='sort_game' ";
-    if($type != 'game')$result.="style='display:none;'";
-    $result.=">";
-    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("Name", "Year", "Number of characters", "Platforms", "Average play time", "price"), array("name", "year", "num_chars", "platforms", "avg_play_time", "price"), "");
-    $result.="</div>";
+    // $result.="<div id='sort_game' ";
+    // if($type != 'game')$result.="style='display:none;'";
+    // $result.=">";
+    // $result.=makeRadios("Sort by", "sort_by_g", $sort_by, array("Name", "Year", "Number of characters", "Platforms", "Average play time", "price"), array("name", "year", "num_chars", "platforms", "avg_play_time", "price"), "");
+    // $result.="</div>";
     
-    $result.="<div id='sort_character' ";
-    if($type != 'character')$result.="style='display:none;'";
-    $result.=">";
-    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("First name", "Last name", "Sex", "Age", "Hometown"), array("first_Name", "last_Name", "sex", "age", "hometown"), "");
-    $result.="</div>";
+    // $result.="<div id='sort_character' ";
+    // if($type != 'character')$result.="style='display:none;'";
+    // $result.=">";
+    // $result.=makeRadios("Sort by", "sort_by_c", $sort_by, array("First name", "Last name", "Sex", "Age", "Hometown"), array("first_Name", "last_Name", "sex", "age", "hometown"), "");
+    // $result.="</div>";
     
-    $result.="<div id='sort_world' ";
-    if($type != 'world')$result.="style='display:none;'";
-    $result.=">";
-    $result.=makeRadios("Sort by", "sort_by", $sort_by, array("Name", "Number of towns", "Capital"), array("name", "num_towns", "capital"), "");
-    $result.="</div>";
+    // $result.="<div id='sort_world' ";
+    // if($type != 'world')$result.="style='display:none;'";
+    // $result.=">";
+    // $result.=makeRadios("Sort by", "sort_by_w", $sort_by, array("Name", "Number of towns", "Capital"), array("name", "num_towns", "capital"), "");
+    // $result.="</div>";
     
     $result.=makeRadios("Order", "order", $order, array("Ascending", "Descending"), array("asc", "desc"), "");
     
@@ -130,8 +130,8 @@ function makeGameSearch($filter_name, $sort_by, $order)
     $db = new mysqli("localhost","team_project","","team_project");
     $query =
     "SELECT * FROM game ";
-    if($filter_name != '') $query .= "WHERE name LIKE ? ";
-    $query.="ORDER BY $sort_by $order;";
+    if($filter_name != '') $query .= "WHERE LOWER(name) LIKE ? ";
+    $query.="ORDER BY name $order;";
     if ($db->connect_errno)
     {
         return "Sorry, this website is experiencing problems.<br/>".
@@ -217,7 +217,7 @@ function makeCharSearch($filter_name, $sort_by, $order)
     $query = "SELECT bob.name_id, bob.first_Name, bob.last_Name, game.name, bob.game_id, bob.sex, bob.age, bob.hometown ".
     "FROM bob, game WHERE (game.game_id=bob.game_id) ";
     if($filter_name != '') $query .= 
-    "AND (character.first_Name LIKE ? OR character.last_Name LIKE ?) ";
+    "AND (LOWER(bob.first_Name) LIKE ? OR LOWER(bob.last_Name) LIKE ?) ";
     
     
     $query.="ORDER BY bob.first_Name $order;";
@@ -238,7 +238,7 @@ function makeCharSearch($filter_name, $sort_by, $order)
     if($filter_name != '')
     {
         $filter_name = '%'.$filter_name.'%';
-        $k->bind_param("s", $filter_name);
+        $k->bind_param("ss", $filter_name, $filter_name);
     }
     $k->execute();
     $k->bind_result($name_id, $first_Name, $last_Name, $gamename, $game_id, $sex, $age, $hometown);
@@ -308,7 +308,7 @@ function makeWorldSearch($filter_name, $sort_by, $order)
     $db = new mysqli("localhost","team_project","","team_project");
     $query =
     "SELECT world_id, world.name, world.num_towns, world.game_id, game.name, capital FROM world, game WHERE world.game_id=game.game_id ";
-    if($filter_name != '') $query .= "AND world.name LIKE ? ";
+    if($filter_name != '') $query .= "AND LOWER(world.name) LIKE ? ";
     $query.="ORDER BY world.name $order;";
     if ($db->connect_errno)
     {

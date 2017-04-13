@@ -26,6 +26,9 @@ if(isset($_GET) && !empty($_GET))
 
     
     $type = $_GET['type'];
+    $sort_by_g = $_GET['sort_by_g'];
+    $sort_by_c = $_GET['sort_by_c'];
+    $sort_by_w = $_GET['sort_by_w'];
     $filter_name = $_GET['filter_name'];
     $sort_by = $_GET['sort_by'];
     $order = $_GET['order'];
@@ -79,17 +82,12 @@ switch ($type)
             case 'capital':
                 break;
             default:
-            $sort_by='name';
+                $sort_by='name';
                 break;
         }
         break;
     default:
         $sort_by='name';
-        break;
-}
-switch ($sort_by)
-{
-    default:
         break;
 }
 switch ($order)
