@@ -26,11 +26,16 @@ form {
     padding-right: 150px;
 }
 input[type=text] {
-    border: 2px solid red;
+    border: 2px solid black;
     border-radius: 4px;
-}
-#search_results {
+    background-color: #84724f;
     
+ 
+}
+
+
+#search_results {
+  
     color:blue;
    
 }
@@ -50,6 +55,7 @@ img{
 }
 table
 {
+    
     border-collapse: collapse;
     color:blue;
     background-color: white
