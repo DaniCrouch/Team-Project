@@ -186,15 +186,13 @@ function makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_tim
 function makeCharSearch($filter_name, $sort_by, $order)
 {
     $db = new mysqli("localhost","team_project","","team_project");
-    $query =
-    "SELECT (character.name_id, character.first_Name, character.last_Name, ".
-    "game.name, character.sex, character.age, character.hometown) ".
-    "FROM character;";
-    //if($filter_name != '') $query .= 
-    //"AND (character.first_Name LIKE ? OR character.last_Name LIKE ?) ";
+    $query = "SELECT bob.name_id, bob.first_Name, bob.last_Name, game.name, bob.game_id, bob.sex, bob.age, bob.hometown ".
+    "FROM bob, game WHERE (game.game_id=bob.game_id) ;";
+    if($filter_name != '') $query .= 
+    "AND (character.first_Name LIKE ? OR character.last_Name LIKE ?) ";
     
     
-    //$query.="ORDER BY first_Name $order;";
+    //$query.="ORDER BY bob.first_Name $order;";
     if ($db->connect_errno)
     {
         return "Sorry, this website is experiencing problems.<br/>".
@@ -205,7 +203,7 @@ function makeCharSearch($filter_name, $sort_by, $order)
     $k = $db->prepare($query);
     if ( !$k )
     {
-    echo $query;
+        echo $query;
         printf('errno: %d, error: %s', $db->errno, $db->error);
         die;
     }
@@ -221,8 +219,8 @@ function makeCharSearch($filter_name, $sort_by, $order)
     $result = '';
     $result.='<div id="search_results"><table align="center"><tr><tbody>';
     $result.="<th></th>";
-    $result.="<th>Name</th>";
-    $result.="<th>Year</th>";
+    $result.="<th>First Name</th>";
+    $result.="<th>Last Name</th>";
     $result.="<th>Game</th>";
     $result.="<th>Sex</th>";
     $result.="<th>Age</th>";
