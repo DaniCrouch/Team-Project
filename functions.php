@@ -282,9 +282,9 @@ function makeWorldSearch($filter_name, $sort_by, $order)
 {
     $db = new mysqli("localhost","team_project","","team_project");
     $query =
-    "SELECT * FROM game ";
-    if($filter_name != '') $query .= "WHERE name LIKE ? ";
-    $query.="ORDER BY $sort_by $order;";
+    "SELECT world_id, world.name, world.num_towns, world.game_id, game.name, capital FROM world, game WHERE world.game_id=game.game_id ";
+    if($filter_name != '') $query .= "AND world.name LIKE ? ";
+    $query.="ORDER BY world.name $order;";
     if ($db->connect_errno)
     {
         return "Sorry, this website is experiencing problems.<br/>".
@@ -300,7 +300,7 @@ function makeWorldSearch($filter_name, $sort_by, $order)
     }
     
     $k->execute();
-    $k->bind_result($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    $k->bind_result($id, $name, $num_towns, $game_id, $gamename, $capital);
     
     $result = '';
     $result.='<div id="search_results"><table align="center"><tr><tbody>';
@@ -316,17 +316,37 @@ function makeWorldSearch($filter_name, $sort_by, $order)
     while($k->fetch())
     {
         
-        $result.=makeGameResult($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+        $result.=makeWorldResult($id, $name, $num_towns, $game_id, $gamename, $capital);
     }
     
     $result.='</tbody></table></div>';
     return $result;
 }
-function makeWorldResult($row)
+function makeWorldResult($id, $name, $num_towns, $game_id, $gamename, $capital)
 {
     $result = '';
     $result.='<tr>';
         $result.='<td>';
+        
+        $result.= $name;
+        
+        $result.='</td>';
+        $result.='<td>';
+        
+        $result.= $num_towns;
+        
+        $result.='</td>';
+        
+        $result.='<td>';
+        
+        $result.= $capital;
+        
+        $result.='</td>';
+        
+        $result.='<td>';
+        
+        $result.="<a href='viewitem.php?item=$game_id'>$gamename</a>";
+        
         $result.='</td>';
     $result.='</tr>';
     return $result;
