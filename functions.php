@@ -301,10 +301,35 @@ function makeCart($cart)
 
 function makeItemInfo($item)
 {
-    // $item should be an int
-    //TODO
-    $result ='NOT YET IMPLEMENTED';
-    $result.='';
+    $db = new mysqli("localhost","team_project","","team_project");
+    $query =
+    "SELECT * FROM game WHERE game_id=?;";
+    if ($db->connect_errno)
+    {
+        return "Sorry, this website is experiencing problems.<br/>".
+        "Error: Failed to make a MySQL connection, here is why: <br/>".
+        "Errno: " . $db->connect_errno . "<br/>".
+        "Error: " . $db->connect_error . "<br/>";
+    }
+    $k = $db->prepare($query);
+    $k->bind_param("i", $item);
+    
+    $k->execute();
+    $k->bind_result($id, $name, $year, $num_chars, $platforms, $avg_play_time, $price);
+    $k->fetch();
+    
+    $result = "<img src='img/games/$id.png'/>";
+    
+    $result.= "<h3>$name</h3><br/>";
+    $result.= "<label>Year released:</label> $year<br/>";
+    $result.= "<label>Number of characters:</label> $num_chars<br/>";
+    $result.= "<label>Platform(s):</label> $platforms<br/>";
+    $result.= "<label>Average play time:</label> $avg_play_time<br/>";
+    $result.= "<label>Price:</label> $price<br/>";
+    $result.='<form>';
+    $result.='<input type="hidden" name="result_added" value="'.$id.'">';
+    $result.='<button class="button">Add to cart</button>';
+    $result.='</form>';
     
     return $result;
     
