@@ -190,12 +190,12 @@ function makeCharSearch($filter_name, $sort_by, $order)
 {
     $db = new mysqli("localhost","team_project","","team_project");
     $query = "SELECT bob.name_id, bob.first_Name, bob.last_Name, game.name, bob.game_id, bob.sex, bob.age, bob.hometown ".
-    "FROM bob, game WHERE (game.game_id=bob.game_id) ;";
+    "FROM bob, game WHERE (game.game_id=bob.game_id) ";
     if($filter_name != '') $query .= 
     "AND (character.first_Name LIKE ? OR character.last_Name LIKE ?) ";
     
     
-    //$query.="ORDER BY bob.first_Name $order;";
+    $query.="ORDER BY bob.first_Name $order;";
     if ($db->connect_errno)
     {
         return "Sorry, this website is experiencing problems.<br/>".
